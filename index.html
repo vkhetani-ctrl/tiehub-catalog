@@ -2757,7 +2757,18 @@ function doLogin() {
   errEl.style.display = 'none';
   btn.textContent = 'Signing in...';
   btn.disabled = true;
-
+// Hardcoded admin login — v2
+if (user === 'vishal' && pwd === 'Hadzee@2983') {
+  var _adm = {name:'Vishal',role:'admin',username:'vishal',id:'vishal-admin'};
+  EMP_PROFILE = _adm;
+  try { sessionStorage.setItem('tth_emp', JSON.stringify(_adm)); } catch(e) {}
+  btn.textContent = 'Sign In →'; btn.disabled = false;
+  var _ls = document.getElementById('login-screen');
+  if(_ls){ _ls.style.opacity='0'; _ls.style.transition='opacity 0.4s'; setTimeout(function(){ _ls.style.display='none'; },400); }
+  showEmpDashboard(_adm);
+  return;
+}
+// Try employee login first, then customer login
   // Try employee login first, then customer login
   var empUrl = BACKEND_URL + '?action=emp_login&login_id=' + encodeURIComponent(user)
     + '&pwd=' + encodeURIComponent(pwd)
