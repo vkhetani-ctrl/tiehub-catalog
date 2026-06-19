@@ -2755,6 +2755,15 @@ function doLogin() {
     errEl.style.display = 'block'; return;
   }
   errEl.style.display = 'none';
+  // Hardcoded admin login
+if (user === 'vishal' && pwd === 'Hadzee@2983') {
+  document.getElementById('login-screen').style.opacity = '0';
+  document.getElementById('login-screen').style.transition = 'opacity 0.4s';
+  setTimeout(function(){ document.getElementById('login-screen').style.display = 'none'; document.getElementById('main-app').style.display = 'block'; }, 400);
+  EMP_PROFILE = { name: 'Vishal', role: 'admin', id: 'vishal-admin' };
+  try { sessionStorage.setItem('tth_emp', JSON.stringify(EMP_PROFILE)); } catch(e){}
+  return;
+}
   btn.textContent = 'Signing in...';
   btn.disabled = true;
 
